@@ -9,7 +9,15 @@ class JungleBeats
   def list
     return @list
   end
-  
+
+  def count
+    return @list.count
+  end
+
+  def play
+    @list.system_speak
+  end
+
   def append(string)
     beats= string.split(" ").to_a
     beats.each do |beat|
@@ -24,8 +32,6 @@ class JungleBeats
       @list.prepend(beat)
     end
   end
-
-
 end
 
 # tester=JungleBeats.new

@@ -11,7 +11,13 @@ class JungleBeatsTest < Minitest::Test
   def beat
     ::JungleBeats.new
   end
-  
+
+  def test_play
+    jb=beat
+    jb.append("deep doo ditt woo hoo shu")
+    assert_equal  jb.count, 6 , jb.list.count
+    jb.play
+  end
 
   def test_creating_new
     jb = beat

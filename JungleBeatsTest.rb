@@ -111,8 +111,10 @@ class JungleBeatsTest < Minitest::Test
     assert_nil new_list.includes?("test")
   end
 
-  # def test_insert_beyond_list_length
-  #
-  # end
-
+  def test_insert_beyond_list_length
+    new_list=list
+    new_list.append("test")
+    new_list.insert(20,"testerooo")
+    assert_raises RuntimeError
+  end
 end
