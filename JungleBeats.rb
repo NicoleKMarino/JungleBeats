@@ -42,35 +42,49 @@ class LinkedList
 
   def includes?(value)
     current=@head
-    while current != nil
-      if(current.value == value)
-        return true
-      else
-        current = current.next_node
+    if current == nil
+      puts "There is nothing in this list"
+      return nil
+    else
+      while current != nil
+        if(current.value == value)
+          return true
+        else
+          current = current.next_node
+        end
       end
+      return false
     end
-    return false
   end
 
   def count
     counter=0
     current=@head
     while current != nil
-    current = current.next_node
-    counter +=1
-  end
+      current = current.next_node
+      counter +=1
+    end
     puts counter
     return counter
   end
 
-  def pop_list
+  def pop
     current=@head
-    while (current.next_node.next_node != nil)
-      current=current.next_node
+    if(current.nil?)
+      puts 'The linked list was empty'
+      return nil
+    elsif current.next_node.nil?
+      puts "Now your list is empty"
+      @head = nil
+      return current
+    else
+      while (current.next_node.next_node != nil)
+        current=current.next_node
+      end
+      return_value=current
+      return_value.next_node=nil
+      return return_value
     end
-    return_value=current
-    return_value.next_node=nil
-    return return_value
   end
 
 
@@ -89,24 +103,9 @@ class LinkedList
     @head=incoming_node
   end
 
-  # def delete(val)
-  #   current = @head
-  #   if current.value == val
-  #     @head = @head.next_node
-  #   else
-  #     current = @head
-  #     while (current != nil) && (current.next_node != nil) && ((current.next_node).value != val)
-  #       current = current.next_node
-  #     end
-  #
-  #     if (current != nil) && (current.next_node != nil)
-  #       current.next_node = (current.next_node).next_node
-  #     end
-  #   end
-  # end
 
   def system_speak
-    system("say -v Albert " + self.display)
+    system("say -v boing -r 500 " + self.to_string)
   end
 
   def to_string
@@ -121,26 +120,3 @@ class LinkedList
     return full_list
   end
 end
-
-
-
-def play_beats
-  noise = LinkedList.new
-  noise.append('plop')
-  noise.append("bloop")
-  noise.append("bloop")
-  noise.append("suu")
-  noise.append("dop")
-  noise.append("woo")
-  # puts noise.to_string
-  noise.count
-  noise.includes?("test")
-  noise.find(3,1)
-  # noise.pop_list
-  # noise.insert(2,"test")
-  # noise.prepend("Nicole was here")
-  # puts noise.display
-  # noise.system_speak
-end
-
-play_beats
